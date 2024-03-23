@@ -111,7 +111,7 @@ export class CustomersService {
     async getCustomersWithFilters(payload?: any): Promise<Customers[]> {
         try {
             if (payload?.name) {//for pagination query 
-                return await this.customerModel.find().find({ name: { $regex: new RegExp(payload?.name) }, id: { $lt: payload?.id } }).limit((payload?.limit) ? (payload?.limit) : 10).skip((payload?.skip) ? (payload?.skip) : 0)
+                return await this.customerModel.find({ name: { $regex: new RegExp(payload?.name) }, id: { $lt: payload?.id } }).limit((payload?.limit) ? (payload?.limit) : 10).skip((payload?.skip) ? (payload?.skip) : 0)
             }
             else {
                 return await this.customerModel.find().sort('id').limit((payload?.limit) ? (payload?.limit) : 10).skip((payload?.skip) ? (payload?.skip) : 0)
