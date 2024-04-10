@@ -31,7 +31,7 @@ export class CustomersService {
                 return await this.customerModel.find({ isDeleted: false }).sort('id').limit(query?.limit).skip((query?.skip) ? (query?.skip) : 0)
             }
             else {
-                return await this.customerModel.find().sort('id')
+                return await this.customerModel.find({ isDeleted: false }).sort('id')
             }
         } catch (error) {
             throw new HttpException({
